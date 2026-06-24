@@ -36,11 +36,6 @@ If you use GitHub Desktop, you can also follow these steps:
 You're ready to start using the template.
 
 
-*One exception to these instructions is if you'd like to contribute to this 
-template.  Then, you should fork the repo so that you can submit pull requests.
-If I lost you with that last sentence, fear not.  You can also contribute to 
-the template by opening issues or via email (see below)*
-
 ## What's in the repository?
 This repository contains a few categories of files.
 
@@ -49,15 +44,12 @@ For the most part, all the files you need to work with end in `.qmd`.
 Their file names match what they are with the exception of `index.qmd`.
 Quarto requires a book to have a file by this name. Here, it's used to
 generate the front matter of the data report. There are some fields
-you'll need to edit. Follow the instructions in the file. Ask questions
-as they arise—you are almost certainly not the only one with your
-question, so asking it will help others, too.
+you'll need to edit. Follow the instructions in the file.
 
 Every file that ends with `.qmd` will appear in your data report unless
 you take steps to prevent this. First, follow the instructions in each
 document. After that, update the chapters listed in `_quarto.yml` to include only
-the files you want to use and in the order you want to use them. Again,
-please reach out with questions.
+the files you want to use and in the order you want to use them. 
 
 #### Files you should NOT edit
 There are a few files you should not edit. These include the graphic for

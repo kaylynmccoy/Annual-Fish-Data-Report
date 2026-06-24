@@ -49,11 +49,25 @@
 ```
 
 ::: {custom-style="Literature"}
-Soto, C. J., & John, O. P. (2017). The next big five inventory (BFI-2): Developing and assessing a hierarchical model with 15 facets to enhance bandwidth, fidelity, and predictive power. *Journal of Personality and Social Psychology, 113*(1), 117-143. <http://dx.doi.org/10.1037/pspp0000096>
+Ault, J.S., Smith, S.G., Bohnsack, J.A., Luo, J., Harper, D.E., & McClellan, D.B. (2006). Building sustainable fisheries in Florida’s coral reef ecosystem: Positive signs in the dry Tortugas. Bull. Mar. Sci. 78(3):633–654.
 
-Nguyen, T., Carnevale, J. J., Scholer, A. A., Miele, D. B., & Fujita, K. (2019). Metamotivational knowledge of the role of high-level and low-level construal in goal-relevant task performance. _Journal of Personality and Social Psychology, 117_(5), 879-899. <http://dx.doi.org/10.1037/pspa0000166>
+Ayotte, P., McCoy, K., Heenan, A., Williams, I., & Zamzow, J. (2015). Coral Reef Ecosystem Program standard operating procedures: Data collection for Rapid Ecological Assessment fish surveys. Pacific Islands Fisheries Science Center Administrative Report H-15-07, 39 p. 
 
-Pegion, K., Kirtman, B. P., Becker, E., Collins, D. C., LaJoie, E., Burgman, R., Bell, R., DelSole, R., Min, D., Zhu, Y., Li, W., Sinsky, E., Guan, H., Gottschalck, J., Metzger, E. J., Barton, N. P., Achuthavarier, D., Marshak, J., Koster, R., . . . Kim, H. (2019). The subseasonal experiment (SubX): A multimodel subseasonal prediction experiment. *Bulletin of the American Meteorological Society, 100*(10), 2043-2061. <https://doi.org/10.1175/BAMS-D-18-0270.1>
+Froese, R., & Pauly, D. (2010). “FishBase.” http://www.fishbase.org/search.php
 
-Bureau of International Organization Affairs. (2018). _U.S. contributions to international organizations, 2017_ \[Annual report\]. U.S. Department of State. <https://www.state.gov/u-s-contributions-to-international-organizations/>
+Kulbicki, M., Guillemot, N., & Amand, M. (2005). A general approach to length-weight relationships for New Caledonian lagoon fishes. Cybium. 29(3):235–252.
+
+NOAA Coral Program. (2021). National Coral Reef Monitoring Plan. NOAA Coral Reef Conservation Program. 40 p. https://repository.library.noaa.gov/view/noaa/32748
+
+NOAA Coral Reef Conservation Program. (2009). Goals & Objectives 2010–2015, NOAA Coral Reef Conservation Program. 40 p. 
+NOAA CRCP. (2014). National Coral Reef Monitoring Plan. NOAA Coral Reef Conservation Program. 40 p. ftp://ftp.library.noaa.gov/noaa_documents.lib/CoRIS/CRCP/noaa_crcp_national_coral_reef_monitoring_plan_2014.pdf.
+
+R Development Core Team. (2011). R: A Language and Environment for Statistical Computing, Vienna, Austria.
+
+Smith, S.G., Ault, J.S., Bohnsack, J.A., Harper, D.E., Luo, J., & McClellan, D.B. (2011). Multispecies survey design for assessing reef-fish stocks, spatially explicit management performance, and ecosystem condition. Fish Res.109(1):25–41.
+
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag, New York.
+
+Williams, I.D., Richards, B.L., Sandin, S.A., Baum, J.K., Schroeder, R.E., Nadon, M.O., Zgliczynski, B., Craig, P., McIlwain. J.L., & Brainard, R.E. (2011). Differences in reef fish assemblages between populated and remote reefs spanning multiple archipelagos across the central and western Pacific. J. Mar. Biol. Article ID 826234, 14 p. https://doi.org/10.1155/2011/826234 
+
 :::

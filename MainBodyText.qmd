@@ -3,342 +3,1556 @@ editor:
   markdown: 
     wrap: 72
 ---
+```{r}
+#| echo: false
+# update year 
+ReportYear<-"2024"
+# update region
+ReportRegion<-"Hawaiʻi"
 
-# Put your section header here in R {.unnumbered}
+```
+# Introduction {.unnumbered}
 
-Replace the above header with whatever you need for your data report.
-Add subsequent headers below in this document. You can incorporate code,
-figures, tables, etc. Whatever you need for your document.
+## Background {.unnumbered}
 
-# Some additional guidance
+The Archipelagic Research Program (ARP) leads the
+U.S. Pacific [National Coral Reef Monitoring Program](https://coralreef.noaa.gov/topics/national-coral-reef-monitoring-program) (NCRMP; @fig-map),
+formerly known as the Pacific Reef Assessment and Monitoring Program
+(RAMP). ARP provides scientific information that supports ecosystem
+approaches to the management and conservation of coral reefs. 
 
-The Word template for PIFSC Data Reports has a ton of helpful
-information on how to format figures, tables, and more. You should check
-that out, even if you're not going to use the Word template, if only
-because it'll help you help our editors.
-
-This section includes a portion of the Word template guidance
-(seriously, you should check out the actual template), focusing on how to
-incorporate requirements into your code and things you'll need to do in
-Word.
-
-## Handy tips for aligning your code with the PIFSC template
-
-The files to make these examples work are all in the ExampleContent
-folder of this repository.
-
-### Imported images
-
-Here are two examples of how to import a figure with cross referencing.\
-You can see more at:
-<https://quarto.org/docs/authoring/cross-references.html>
-
-![](ExampleContent/IRCatDusk.jpg){#fig-IRC
-alt="An illuminated office building at dusk with palm trees and grass in the foreground"}
+From 2000–2011, the Pacific RAMP surveyed each region on a biennial
+basis to establish baseline ecosystem assessments and conduct long-term
+monitoring that integrates biological observations with water quality
+and oceanographic data. In 2011, the [NOAA Coral Reef Conservation
+Program](https://coralreef.noaa.gov/) (CRCP) established the NCRMP, and the Pacific RAMP was
+integrated into this broader objective to monitor the status and trends
+of all U.S. coral-reef ecosystems, including the Atlantic, Caribbean,
+and Puerto Rico (NOAA CRCP, 2014). Starting in 2012, the Pacific
+NCRMP transitioned to monitoring each region on a triennial cycle.
 
 ```{r}
 #| echo: false
-#| label: fig-IRC2
-#| fig-cap: "The Inouye Regional Center (IRC)"
-#| fig-alt: "An illuminated office building at dusk with palm trees adn grass in the foreground"
-
-knitr::include_graphics("ExampleContent/IRCatDusk.jpg")
+#| label: fig-map
+#| fig-cap: "Coral-reef areas surveyed for the Pacific NCRMP. Shading indicates marine national monuments. ALT: A map of the Pacific Ocean showing the areas surveyed by Pacific NCMRP "
+knitr::include_graphics("Figures/Fig_1_PACIFIC_NCRMP_survey_area.png")
 ```
 
-These methods allow you reference your figures within the text, for
-example both @fig-IRC and @fig-IRC2 show the same thing.
+As an interdisciplinary monitoring program, the NCRMP has three main themes: biological, climate, and socioeconomic monitoring. The Pacific NCRMP executes the biological and climate components of hard-bottomed reef habitats in the 0–30 m depth range. Under the biological monitoring theme, the Pacific NCRMP collects the following reef-fish data for every observed species, including key fish taxa:   
 
-Frustratingly, these methods do not retain your alt text (a known Quarto
-bug), allow Word to recognize your figure as a figure when building a
-list of figures (frustrating), or let you use the PIFSC "Caption" style
-(also frustrating). BUT, they're better than having to paste all your
-figures in by hand. As a workaround, after you render your document,
-you'll need to add figure captions and alt text in Word. You could
-include the text for these in this document to allow you to cut and
-paste them in if you want. Just an idea.
+* Abundance
+* Size structure
+* Diversity
+* Distribution
 
-Oh, and you can delete the placeholder captions that Quarto generates.
-That appears to be easier than turning them into a Word caption.
+Partnership and cooperation with other federal and jurisdictional management groups is a core principle of the NCRMP. For example, the [University of Guam’s Long-Term Coral Reef Monitoring Program](https://www.uog.edu/ml/ltmp) (GLTMP) conducts reef fish monitoring surveys around Guam using similar survey designs and methods. Therefore, data gathered by the GLTMP is readily merged with NCRMP data resulting in an increased survey domain for local research efforts. 
 
-#### To add a figure caption
+This report focuses on the data collected using the stationary point count (SPC) method to survey the fish assemblage (Methods[link to section in word]). Note that the Pacific NCRMP also collects benthic data via benthic transects in the same locations as SPC surveys, which are not included in this report (for more information access the NOAA Coral Program [2021]).
 
-Right-click the image and select “Insert Caption.” Note: it is not
-recommended to add the full text during this stage as it has a character
-limit. Rather, “insert caption” as “Figure #.” then continue to add the
-text once the caption is produced.
+## Monitoring scope of the NCRMP {.unnumbered}
 
-To format the added caption, highlight the text and go to Home \> Style
-\> Caption. Bold the figure number only. Keep the figure
-center-justified and the caption left-justified.
+CRCP’s NCRMP includes the following biological monitoring goals:  
 
-#### To add alternative text
+* Develop and implement consistent and comparable methods and standard operating procedures that detail specific field, laboratory, and/or analytical procedures and best practices for all indicators (with periodic updates to reflect new technologies or logistical considerations)
+* Develop and maintain strong partnerships with federal, state/territory, and academic partners
+* Collect scientifically sound, geographically comprehensive data in U.S. coral reef areas
+* Deliver high‐quality data, data products, and tools to the coral reef conservation community
+* Provide context for interpreting the results of localized monitoring
+* Provide periodic assessments of the status and trends of the nation’s coral reef ecosystems
+* Contribute to local capacity-building through its engagement of jurisdictional entities and private-public partnerships involved in NCRMP data collection
 
-Right click the image and select “Edit Alt Text.”
+These goals are based on the key monitoring questions for the CRCP and NCRMP support for baseline observations and monitoring (NOAA Coral Reef Conservation Program, 2009; NOAA CRCP, 2014; NOAA Coral Program, 2021).
 
-::: {custom-style="Emphasis 1"}
-Tell me more about alt text
+The Pacific NCRMP involves monitoring over very large spatial scales: ~40 islands and atolls spread over thousands of kilometers. The target for fish monitoring is to provide periodic snapshot assessments of coral-reef assemblages at U.S.-affiliated islands in the Pacific, with the core reporting unit being at the island scale (or sub-island scale for large islands). As such, the survey design and effort are optimized to generate data at the spatial scale of islands and atolls. Therefore, the NCRMP is explicitly a “wide-but-thin” survey program, with the aim of generating large-scale, regional status and trend information of the nation’s shallow (0–30 m) coral-reef ecosystems, to provide a broad-scale context and perspective for management and conservation.
+
+## Report structure {.unnumbered}
+
+This report summarizes the reef-fish survey data collected in `r ReportRegion` during the Pacific NCRMP survey mission in `r ReportYear`. This report incorporates reef fish data collected by the Papahānaumokuākea Marine National Sanctuary monitoring team, who use the same reef fish survey methods as the NCRMP. The status of reef-fish assemblages is described at the island scale and for larger islands at the sector scale. By collecting data using the same methods over time, we are able to provide time series that begin in 2009, when ARP started to consistently use SPC fish surveys. 
+
+All data used in this report are available through NCRMP's [online data visualization tool](https://ncrmp.coralreef.noaa.gov/), CRCP's [digital corals page](https://coralreef.noaa.gov/digital-corals), or through [NOAA’s InPort data system for 2009 – 2012](https://www.fisheries.noaa.gov/inport/item/34515), and [2014 on](https://www.fisheries.noaa.gov/inport/item/34518). For all remaining data requests or inquiries, please contact Andrew.Shantz@noaa.gov.
+
+# Methods {#sec-methods .unnumbered}
+
+## Sampling domain and survey design {.unnumbered}
+
+The target sampling domain is hard-bottom habitat in water shallower than 30 m (Table 1). All islands/atolls within the regions are stratified by reef zone (backreef, forereef, lagoon, protected slope) and depth zone: shallow (> 0–6 m), mid (> 6–18 m), and deep (> 18–30 m). Within the Main Hawaiian Islands, sampling is exclusively conducted in forereef habitats and each island is further stratified into sectors based on broad differences in oceanographic exposure, reef structure, and local human population density. In contrast, the Papahānaumokuākea Marine National Monument encompasses a broader range of habitats. Monitoring at Hōlanikū (Kure), Manawai (Pearl & Hermes), and Midway includes backreef and lagoon habitats in addition to forereefs, while the design at Lalo (French Frigate Shoals) incorporates all four primary reef zones, including protected slope. 
+
+```{r}
+#| echo: false
+#| label: tab-terms
+# # TABLES - formatting by hand is one way to insert a table. Columns are delineated by a vertical bar. A colon proceeds the table caption, and three colons are used for formatting table descriptive text  
+```
+table caption: Sampling terms and definitions
+
+| **Term** | **Definition** | 
+|-------------------|-----------------------------------|
+| Sampling domain | Hard-bottom habitat in water less than 30 m depth. |
+| Reporting unit | A collection of sample sites, typically an island or atoll and in some cases, small island groups or sectors of larger islands. |
+| Sectors | Management units and stretches of coastline with broadly similar habitat attributes and local human population density|
+| Reef zone | Backreef, forereef, lagoon, or protected slope |
+| Depth zone | Shallow >0*–6 m; mid >6–18 m; deep >18–30 m |
+| Strata | Combination of sectors, reef zone and depth zone—the pooling level for site estimates by reef area | 
+| Sample site data | The average values of estimated observed quantities from the SPC surveys conducted at each site. These are typically derived from a single pair of simultaneous surveys. Sites are tied to geographic coordinates. | 
+
+::: {custom-style="Table Descriptive Text"}
+\*For practical reasons, sites in which the center point of the survey cylinder is shallower than 1.5 m are not surveyed.
 :::
 
-Alternative text allows figures to be understood by those who are unable
-to see the figure. It's also a 508-compliance requirement. Alt text
-should be short and sweet, like a tweet. Don’t include language like
-“image of” or “photo of.” It is okay to reference what type of graph is
-being used (i.e., bar chart). The PIFSC Publications intranet page has a
-[guide on creating alternative
-text](https://sites.google.com/noaa.gov/pifsc-intranet/publications-station/citations-and-508-compliance).
+The number of sites to be surveyed per stratum is based on a weighting factor calculated from the proportional area per stratum per reporting unit (e.g., island) and the variance of the target output metrics (e.g., consumer group biomass and total fish biomass; @sec-fshgrp), in combination with the ship time allotted per island or atoll. The resulting target number of sites is then randomly distributed across each stratum. Details on the sampling effort across survey cruises are provided in @sec-appA.
 
-::: {custom-style="Emphasis 1"}
-Can the auto-generated alt text function be used?
-:::
+## Site selection {.unnumbered}
 
-The editorial team has messed around with Word’s new auto generated alt
-text and did not find the alternative text to be robust enough to meet
-508 compliance standards for figures. The auto generated feature can be
-used as a skeleton, however, authors are still responsible for ensuring
-that the alternative text meets the standards outlined on the [508
-compliance](https://sites.google.com/noaa.gov/pifsc-intranet/publications-station/citations-and-508-compliance)
-intranet page.
+Prior to each survey mission, sample site locations (latitude and longitude) are randomly drawn from geographic information system (GIS) habitat and strata maps of the entire sampling domain (@fig-strata).  
 
-**All figures are required to have captions and alternative text.**
+Maps used in the site selection procedure were created using information from the NOAA [National Centers for Coastal Ocean Science](https://coastalscience.noaa.gov/), reef zones (e.g., forereef) digitized from IKONOS satellite imagery or nautical charts, bathymetric data from the Pacific Islands Fisheries Science Center (PIFSC)-affiliated [Pacific Islands Benthic Habitat Mapping Center](https://www.soest.hawaii.edu/pibhmc/cms/) at the University of Hawaiʻi at Mānoa, and prior knowledge gained from previous visits to survey locations.   
 
-### Images generated by document code
+Although the Pacific NCRMP aims to survey around the entirety of each island or atoll, the achieved monitoring effort is ultimately determined by field logistics and weather conditions encountered during field operations on each research cruise. If a site is not suitable (e.g., soft- as opposed to hard-bottomed habitat) or accessible (e.g., due to inclement sea conditions), the dive is aborted and an alternate (backup) site is picked from the randomized list. In some cases, the spatial coverage of sampling sites around the entire area of the target sampling domain is incomplete. As such, any inferences about coral-reef fish assemblages and habitat made at the island scale are only representative of the areas sufficiently surveyed (@sec-appB `r ReportYear`). For further details on the methods and maps used to select sites, go to (Ayotte et al. 2015 and Williams et al. 2011).
 
-You can also include code within your data report to generate the
-figures, rather than importing them. The code below walks through an
-example of how to do this.
+```{r}
+#| echo: false
+#| label: fig-strata
+#| fig-cap: "An example of the benthic habitat and depth strata information used in the site-selection process. Each circle identifies a site that falls on hard substrata (green) in the three depth strata (see map legend; shallow, <6 m; mid, >6–18 m; and deep, >18–30 m). ALT: Map of an island with benthic substrate categories of land, hard substrate, soft substrate, and unknown habitat."
+knitr::include_graphics("Figures/Fig_2_habitat_map.png")
+```
 
-Some notes about the code:\
-- `echo: false` prevents the code from showing up in your document. If
-you *want* to include code, delete this line.\
-- `message: false` prevents messages that result from running your code
-from showing up in your document.\
-`warning: false` prevents warnings that result from running your code
-from showing up in your document.  In this case, it's a warning about the 
-version of R that `nmfspalette` was built under.\ 
-- `label: fig-co2growth` allows you to create a cross reference to the
-figure in your text. There's an example of this below the code.\
-- calling `par(bg = NA)` before plotting creates a transparent
-background, which comports with the PIFSC template. If you are
-generating a figure that you're going to save and then import, you can
-use `bg = "transparent"` in the command to save your figure instead.
+## Sampling Methods {.unnumbered}
+
+At each survey site, divers record the counts and sizes of observed fish assemblages. The SPC protocol closely follows that used by Ault et. al. (2006) and involves a pair of divers conducting simultaneous counts in adjacent, visually estimated 15 m diameter cylindrical plots extending from the substrate to the limits of vertical visibility (@fig-spc). 
+
+Prior to beginning each SPC, a 30 m line is laid across the substratum. Markings at 7.5 m, 15 m, and 22.5 m enable survey divers to locate the midpoint (7.5 m or 22.5 m) and two edges (0 m and 15 m or 15 m and 30 m) of their survey plots. Each count consists of two components. 
+
+The first is a 5-minute species enumeration period in which the diver records the taxa of all species observed within their cylinder. At the end of the 5-minute period, divers begin the tallying portion of the count, where they systematically work through their species list and record the number and estimated size (total length [TL] to the nearest centimeter) of each individual fish. 
+
+The tallying portion is conducted as a series of rapid visual sweeps of the plot, with one species-grouping counted per sweep. To the extent possible, divers remain at the center of their cylinders throughout the count. However, small, generally site-attached and semi-cryptic species—which tend to be under-represented in counts made by an observer remaining in the center of a 7.5-m radius cylinder—are left to the end of the tally period, at which time the observer swims through their plot area carefully searching for those species. In cases where a species is observed during the enumeration period but is not present in the cylinder during the tallying period, divers record their best estimates of size and number observed in the first encounter during the enumeration period and mark the data record as “non-instantaneous.” 
+
+Beginning in 2012, divers also recorded observations of fishes that were first seen inside the cylinders at some point between 5 and 30 minutes into the survey. However, for consistency across time periods, those additional observations were not used in this report. Surveys are not conducted if horizontal visibility is less than 7.5 m, that is, when observers cannot distinguish the edges of their cylinder (Ayotte et al., 2015). 
+
+```{r}
+#| echo: false
+#| label: fig-spc
+#| fig-cap: "Side view of the stationary point count method. A pair of divers count and size the fishes within adjacent cylinders measuring 15 m in diameter. ALT: Two divers record fish data in a visually estimated cylinder with a 15-m diameter"
+knitr::include_graphics("Figures/Fig_3_SPC_method.png")
+```
+
+## Data entry and storage {.unnumbered}
+
+Data are entered into a custom data entry application built with Oracle Application Express and stored in an Oracle mission-specific database. Upon completion of each monitoring cruise, all data are migrated to an existing master Oracle database that is stored on a server at the PIFSC.
+
+## Data quality control {.unnumbered}
+
+Data quality control is implemented at three main stages:
+
+* Prior to conducting fish surveys for the Pacific NCRMP, each observer must take the full training course. In between field data collections, observers practice survey methods and take fish identification tests (@fig-data-process: Pre-field). 
+* Checking for errors at the data entry stage (@fig-data-process: In the field) occurs on the cruise when observers check the data entered by their dive partner against their datasheet for typing and potential sizing errors. At the end of the cruise, a series of error checking scripts are run prior to migrating from the mission Oracle database to the master Oracle database (@fig-data-process: Post-field).  
+
+Examining diver estimation accuracy occurs during and after the monitoring cruise when diver estimates are compared between dive partner pairs (@fig-data-process: In the field). Observer comparisons from the regions surveyed in `r ReportYear` are in @sec-appC.
+
+```{r}
+#| echo: false
+#| label: fig-data-process
+#| fig-cap: "The training, data collection, data processing, and reporting workflow for the Pacific NCRMP SPC surveys. ALT: Training, data collection, and data review process infographic"
+knitr::include_graphics("Figures/Fig_4_data_process.tif")
+```
+
+## Data handling {.unnumbered}
+
+### Calculating fish biomass per site {.unnumbered}
+
+Using the count and size data collected per observer in each replicate survey, the body weight of each individual fish is calculated using length-to-weight (LW) conversion parameters and, where necessary, length-length (LL) parameters (for example, to convert TL to fork length [FL] for species with LW parameters based on FL). LW and LL conversion parameters were taken from FishBase (Froese & Pauly, 2010; Kulbicki et al., 2005). Biomass per fish is calculated using the standard length-weight equation. Herein, the term “biomass” refers to the aggregate body weight of a group of fishes per unit area (g m^–2^). Site is the base sample unit, and the estimated biomass of fishes per site is calculated by taking the mean value from the paired SPC surveys. 
+
+### Fish groupings {.unnumbered #sec-fshgrp}
+
+In this report, species data are summarized at several different levels: consumer group, total fish biomass (“all fishes”), parrotfish biomass, and average total length. Consumer groups are: “primary consumers” (herbivores and detritivores); “secondary consumers” (omnivores and benthic invertivores); “planktivores;” and “piscivores,” with classifications based on diet information taken largely from FishBase (Froese & Pauly, 2010). For parrotfish, data are presented for two size classes: 10–30 cm and greater than 30 cm TL, as 30 cm is the legal minimum size for fishing on all islands. 
+
+### Generating island-scale estimates from the stratified design {.unnumbered}
+
+Summary statistics (e.g., mean and variance) of survey metrics (e.g., biomass) are calculated by first averaging values within each stratum before calculating the reporting unit values. A weighted-average method to calculate summary statistics is used because survey strata vary in size within each reporting unit. 
+
+Estimates of the mean and variance for each survey quantity considered are calculated based on the observed values at sampled sites within each stratum. Then, aggregate estimates of the quantities across all strata are calculated using these formulas: 
+
+(1) Pooled mean biomass (*X*) across S strata:\
+$$
+\begin{align}
+X = \Sigma^S_{1}(X_{i}*w_{i})
+\end{align}
+$$
+(2) Pooled mean variance of mean biomass (*VAR*) across S strata:\
+$$
+\begin{align}
+VAR = \Sigma^S_{1}(VAR_{i}*w^2_{i})
+\end{align}
+$$
+where $$X_{i}$$ is the estimate of mean biomass within stratum *i*, $$VAR_{i}$$ is the estimated variance of $$X_{i}$$, and *wi* is the stratum-weighting factor. Strata weighting factors were based on the size of strata, that is, if a stratum is 50% of the total habitat area surveyed at an island, its weighting factor will be 0.5, and the total of all weighting factors in an island sums to 1 (Smith et al., 2011).
+
+In this report, only data from sites surveyed under the stratified sampling design are used (i.e., data collected from 2009 onward; @sec-appD). In the rare cases where fewer than two sites were surveyed in a stratum during a reporting period, they were removed from the island-scale parameter estimates for that period. 
+
+Island-scale values for total fish biomass (i.e., all fishes, fishes by size class) and biomass per consumer group, parrotfish size class, and species of interest (mean and variance) are calculated by year (Island status and trends [link to section in word]). 
+
+All data handling and analyses were performed using raw site data extracted from the NOAA PIFSC Oracle database, processed using a set of routine processing scripts written in R (R Development Core Team, 2011; @fig-data-process: Post-field), and visualized using the ggplot2 package (Wickham, 2016). The site-level data used to generate all figures and summary statistics are available upon request.
+
+# Island status and trends {.unnumbered #sec-island}
+```{r}
+#| echo: false
+# # update the last sentence in this paragraph to reflect species of interest specific to each region   
+``` 
+This section summarizes SPC data collected at each island in `r ReportRegion` between 2010 and `r ReportYear`, when comparable methods were used. For each island within a region—if there was sufficient sampling for the year—the maps illustrate the SPC site-level data and a standard set of graphs. The graphs show summary information about the fish community at the island and reef zone (forereef, lagoon, protected slope) scale.
+
+On each fish biomass graph for the forereef habitat, a reference line indicates the region-wide mean estimate across all surveyed years (2010–`r ReportYear`), which is provided as a relevant regional comparison for island-level estimates. Fish biomass estimates are shown for each year of all fish combined, all fish in two size classes, parrotfish in two size classes, families of interest, and by consumer group. All fish, consumer group, and parrotfish biomass are core NCRMP indicators (NOAA CRCP 2014). Large parrotfishes are important grazers, so parrotfish biomass is separately reported for two size groups: large (>30 cm TL) and small (10–30 cm TL) fishes. 
+
+Mean fish size (cm TL) per island and year is also reported, as it can be a useful indicator of fishing pressure; fishes smaller than 10 cm TL are excluded to reduce noise from variable levels of recent fish recruitment. Biomass for jacks and all shark species are also shown. 
+
+{{< pagebreak >}}
+
+# Main Hawaiian Islands{.unnumbered}
+## Hawaiʻi {.unnumbered}
+
+Table x. Year surveyed and the number of sites.
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-co2growth
-#| fig-cap: Annual increase in atmospheric CO~2~
-#| fig-alt: Line graph showing increasing growth rate over time
-#| out-width: 5in
-
-# Load the libraries we'll need
-library(tidyverse, quietly = TRUE)
-library(nmfspalette) # https://nmfs-fish-tools.github.io/nmfspalette/
-
-# This example uses data from the Mauna Loa observatory.
-# If you have PIFSC-generated publicly accessible machine-readable data that
-# the template could use instead, please open an issue in the repo and suggest it.
-
-# Load data
-co2gr <- read_csv("https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.csv", 
-                  skip = 45,
-                  show_col_types = FALSE)
-
-# Create expression to include a subscript in the y-axis label
-yLabel <- expression(CO[2] ~ Growth ~ Rate ~ (ppm))
-
-# Create the figure with a transparent background
-par(bg = NA)
-plot(co2gr$year, co2gr$`ann inc`, type = "l", col = nmfs_cols("processblue"),
-     xlab = c('Year'), ylab = yLabel, las = 1)
-
-```
-
-As we can see in @fig-co2growth, the amount of carbon dioxide added to
-the atmosphere continues to increase over time.
-
-### Tables
-
-These examples walks through how to create a table using code. **Do not
-import a table as an image** or the editors will send your Data Report
-back to you and ask you to replace it with an actual table.
-
-A few things to note about tables in PIFSC Data Reports:\
-- Use consistent significant figures throughout a given table.\
-- All blank cells must be filled, even if it's only with a hyphen (this
-helps screen readers work).\
-- All tables need captions. As with figures, you'll need to add these in
-Word.\
-- There's some formatting that you'll need to do in Word for the time
-being (e.g., subscripts, font). In the meantime, solutions are welcome!
-
-#### Creating a table from a csv
-
-This example creates a table directly from a csv using the `kable`
-package. It allows you to rename column headers, align columns,
-harmonize the number of digits, format numbers, handle missing values,
-and more. You can see more at:
-<https://bookdown.org/yihui/rmarkdown-cookbook/kable.html>
-
-```{r}
-#| echo: false
-#| message: false
-#| label: tbl-co2growth
-#| tbl-cap: Annual increase in atmospheric CO~2~ of the past 10 years
+#| label: tbl-haw
 
 # Load the library we'll need
 library(knitr)
 
-# Filtering data to just the most recent 10 years
-Final10years <- co2gr |>
-  select(year, `ann inc`) |>
-  filter(co2gr$year > 2013)
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
 
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Hawaii") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
 # Make the table, including:
 # renaming the columns (cols_label)
 # aligning the text in keeping with the PIFSC template
 
-kable(Final10years,
-      col.names = c('Year', 'Annual CO~2~ Increase (ppm)'),
+kable(t_haw,
       align = "rr")
+# kable(haw,
+#       col.names = c('Year', 'Sites'),
+#       align = "rr")
+
 ```
 
-As @tbl-co2growth demonstrates, you'll need to do some of the formatting by hand
-in Word.  Frustratingly, some of the coded instructions (e.g., alignment) don't
-seem to be carrying through.  Suggestions for fixing this are welcome!
+Hawaiʻi is further broken down into geographic sectors due to its large size. Sectors are indicated by different colors on the map, and summary data are shown at the island level and the sector level. Not all sectors were surveyed each year.
 
-#### Creating a table by hand
+```{r}
+#| echo: false
+#| label: fig-haw-map
+#| fig-cap: "Hawaiʻi Island site survey data by year. Each bubble represents a survey site, and the size of the bubble corresponds to the total fish biomass at each site. ALT: Map of Hawai'i island with survey site locations by year"
+knitr::include_graphics("Figures/MHI/HAW_2024.png")
+```
 
-This example creates a table by hand, which can be tedious though is
-sometimes necessary.
+```{r}
+#| echo: false
+#| label: fig-haw-frf
+#| fig-cap: "Hawaiʻi Island fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and species of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line). ALT: All fish biomass, mean size, consumer group biomass, parrotfish and families of interest biomass bar graphs"
+knitr::include_graphics("Figures/MHI/Hawaii_FRF_2024.png")
+```
 
-| **Greenhouse Gas (GHG)** | **Percent of 2022 US GHG Emissions** | **Global Warming Potential** |
-|:-------------------------|-------------------------------------:|-----------------------------:|
-| Carbon Dioxide (CO~2~)   |                                 79.7 |                            1 |
-| Methane (CH~4~)          |                                 11.1 |                           28 |
-| Nitrous Oxide (N~2~O)    |                                  6.1 |                          265 |
-| Fluoronated Gases        |                                  3.1 |                       5,195* |
+{{< pagebreak >}}
 
-: Contribution to 2022 US emissions and 100-year global warming potential of the top 
-greenhouse gases {#tbl-GWP}
+### Hawaiʻi's Hamakua Sector, indicated by green (@fig-haw-map). {.unnumbered}
 
-::: {custom-style="Table Descriptive Text"}
-\*average across all fluoronated gasses.  Sources: <https://www.epa.gov/system/files/documents/2025-01/ghg-emission-factors-hub-2025.pdf>, 
-<https://www.epa.gov/ghgemissions/overview-greenhouse-gases>.
-:::
+```{r}
+#| echo: false
+#| label: fig-haw-ham
+#| fig-cap: "Hawaiʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/HAW_HAMAKUA_SEC_2024.png")
+```
 
-In the code that creates @tbl-GWP the colons (:) in the line under the header 
-denote column alignment.  Although this seems not to be working...  Something to
-fix.
+{{< pagebreak >}}
 
-#### Landscape orientation for wide tables
-If you have a very wide table, you can use landscape orientation to display it 
-more cleanly.  Simply enclose your table in fences (:::) designating the page
-orientation.  There's an example below.
+### Hawaiʻi's Kona Sector, indicated by orange (@fig-haw-map).{.unnumbered}
 
-::: {.landscape}
+```{r}
+#| echo: false
+#| label: fig-haw-kon
+#| fig-cap: "Hawaiʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/HAW_KONA_SEC_2024.png")
+```
 
-Check out how wide @tbl-WIDE is.  Thanks to PIFSC's [OceanWatch](https://oceanwatch.pifsc.noaa.gov/)
-for supplying the data!
+{{< pagebreak >}}
+
+### Hawaiʻi's Puna Sector, indicated by purple (@fig-haw-map).{.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-haw-pun
+#| fig-cap: "Hawaiʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/HAW_PUNA_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Hawaiʻi's Southeast Sector, indicated by pink (@fig-haw-map).{.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-haw-se
+#| fig-cap: "Hawaiʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/HAW_SE_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Kauai {.unnumbered}
 
 ```{r}
 #| echo: false
 #| message: false
-#| label: tbl-WIDE
-#| tbl-cap: 2024 monthly ESA OC CCI chlorophyll data 
+#| warning: false
+#| label: tbl-kai
+#| tbl-cap: Year surveyed and the number of sites.
 
-# Load the data from OceanWatch
-# You can go to https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.html
-# to select other parameters.
-# At that site, I selected a single year of monthly data at a single location 
-# that happens to be that of Station ALOHA (but this is satellite data)
-# and copied the text in the box next to the 'Just generate the URL:' button
-chl_dat <- read_csv("https://oceanwatch.pifsc.noaa.gov/erddap/griddap/esa-cci-chla-monthly-v6-0.csvp?chlor_a%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D,MERIS_nobs_sum%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D,MODISA_nobs_sum%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D,OLCI_A_nobs_sum%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D,OLCI_B_nobs_sum%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D,SeaWiFS_nobs_sum%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D,VIIRS_nobs_sum%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D,chlor_a_log10_bias%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D,chlor_a_log10_rmsd%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D,total_nobs_sum%5B(2024-01-01T00:00:00Z):1:(2024-12-01T00:00:00Z)%5D%5B(22.75):1:(22.75)%5D%5B(202):1:(202)%5D")
+# Load the library we'll need
+library(knitr)
 
-# Wrangling the data so that we just see the month
-# and to lop off some significant figures
-# and rename the columns
-chl_tidy <- chl_dat |>
-  mutate(Month = month(`time (UTC)`)) |>
-  mutate(
-    `latitude (degrees_north)` = signif(`latitude (degrees_north)`, digits = 4),
-    `longitude (degrees_east)` = signif(`longitude (degrees_east)`, digits = 5),
-    `chlor_a (mg m-3)` = signif(`chlor_a (mg m-3)`, digits = 3),
-    `OLCI_A_nobs_sum` = round(`OLCI_A_nobs_sum`, digits = 0),
-    `OLCI_B_nobs_sum` = round(`OLCI_B_nobs_sum`, digits = 0),
-    `chlor_a_log10_bias` = signif(`chlor_a_log10_bias`, digits = 3),
-    `chlor_a_log10_rmsd` = signif(`chlor_a_log10_rmsd`, digits = 3),
-    `total_nobs_sum` = round(`total_nobs_sum`, digits = 0),
-    `time (UTC)` = NULL, # omitting this column since we have Month
-  ) |>
-  select(Month, everything()) |> # reordering so Month is first
-  rename(
-    `Lat (°N)` = `latitude (degrees_north)`,
-    `Lon (°E)` = `longitude (degrees_east)`
-  )
-
-# Plus drop the columns were all values are NaNs
-chl_tidy <- chl_tidy |>
-  select(where(~ !all(is.na(.))))
-
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Kauai") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
 # Make the table, including:
+# renaming the columns (cols_label)
 # aligning the text in keeping with the PIFSC template
 
-kable(chl_tidy,
+kable(t_haw,
+      col.names=colnames(t_haw),
+      align = "rr")
+# kable(haw,
+#       col.names = c('Year', 'Sites'),
+#       align = "rr")
+
+```
+
+Kauai is further broken down into geographic sectors due to its large size. Sectors are indicated by different colors on the map and summary data are shown at the island level and the sector level. 
+
+```{r}
+#| echo: false
+#| label: fig-kau-map
+#| fig-cap: "Kauai Island site survey data by year. Each bubble represents a survey site, and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/MHI/KAU_2024.png")
+```
+
+```{r}
+#| echo: false
+#| label: fig-kau-frf
+#| fig-cap: "Kauai Island fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/MHI/Kauai_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Kauai's east sector, indicated by pink (@fig-kau-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-kau-east
+#| fig-cap: "Kauai Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/KAU_EAST_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Kauai's napali sector, indicated by blue (@fig-kau-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-kau-nap
+#| fig-cap: "Kauai Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/KAU_NAPALI_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Kahoʻolawe {.unnumbered}
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-kah
+#| tbl-cap: Year surveyed and the number of sites.
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Kahoolawe") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      col.names=colnames(t_haw),
+      align = "rr")
+# kable(haw,
+#       col.names = c('Year', 'Sites'),
+#       align = "rr")
+
+```
+
+Kahoʻolawe is further broken down into geographic sectors due to its large size. Sectors are indicated by different colors on the map and summary data are shown at the island level and the sector level. 
+
+```{r}
+#| echo: false
+#| label: fig-kah-map
+#| fig-cap: "Kahoʻolawe Island site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/MHI/KAH_2024.png")
+```
+
+```{r}
+#| echo: false
+#| label: fig-kah-frf
+#| fig-cap: "Kahoʻolawe Island fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/MHI/Kahoolawe_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Kahoʻolawe's north sector, indicated by pink (@fig-kah-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-kah-north
+#| fig-cap: "Kahoʻolawe Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/KAH_NORTH_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Kahoʻolawe's south sector, indicated by blue (@fig-lan-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-kah-sou
+#| fig-cap: "Kahoʻolawe Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/KAH_SOUTH_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Lanaʻi {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-lan
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Lanai") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      col.names=colnames(t_haw),
+      align = "rr")
+# kable(haw,
+#       col.names = c('Year', 'Sites'),
+#       align = "rr")
+
+```
+
+Lanaʻi is further broken down into geographic sectors due to its large size. Sectors are indicated by different colors on the map and summary data are shown at the island level and the sector level. 
+
+```{r}
+#| echo: false
+#| label: fig-lan-map
+#| fig-cap: "Lanaʻi Island site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/MHI/LAN_2024.png")
+```
+
+```{r}
+#| echo: false
+#| label: fig-lan-frf
+#| fig-cap: "Lanaʻi Island fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/MHI/Lanai_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Lanaʻi's north sector, indicated by pink (@fig-lan-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-lan-north
+#| fig-cap: "Lanaʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/LAN_NORTH_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Lanaʻi's south sector, indicated by blue (@fig-lan-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-lan-sou
+#| fig-cap: "Lanaʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/LAN_SOUTH_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Maui {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-mai
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Maui") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      col.names=colnames(t_haw),
+      align = "rr")
+# kable(haw,
+#       col.names = c('Year', 'Sites'),
+#       align = "rr")
+
+```
+
+Maui is further broken down into geographic sectors due to its large size. Sectors are indicated by different colors on the map and summary data are shown at the island level and the sector level. 
+
+```{r}
+#| echo: false
+#| label: fig-mai-map
+#| fig-cap: "Maui Island site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/MHI/MAI_2024.png")
+```
+
+```{r}
+#| echo: false
+#| label: fig-mai-frf
+#| fig-cap: "Maui Island fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/MHI/Maui_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Maui's hana sector, indicated by pink (@fig-mai-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-mai-hana
+#| fig-cap: "Maui Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/MAI_HANA_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Maui's Kahului sector, indicated by blue (@fig-mai-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-mai-kah
+#| fig-cap: "Maui Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/MAI_KAHULUI_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Maui's Kihei sector, indicated by green (@fig-mai-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-mai-kih
+#| fig-cap: "Maui Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/MAI_KIHEI_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Maui's Lahaina sector, indicated by purple (@fig-mai-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-mai-lah
+#| fig-cap: "Maui Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/MAI_LAHAINA_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Maui's northeast sector, indicated by olive (@fig-mai-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-mai-ne
+#| fig-cap: "Maui Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/MAI_NE_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Molokaʻi {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-mol
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Molokai") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      col.names=colnames(t_haw),
+      align = "rr")
+# kable(haw,
+#       col.names = c('Year', 'Sites'),
+#       align = "rr")
+
+```
+
+Molokaʻi is further broken down into geographic sectors due to its large size. Sectors are indicated by different colors on the map and summary data are shown at the island level and the sector level. 
+
+```{r}
+#| echo: false
+#| label: fig-mol-map
+#| fig-cap: "Molokaʻi Island site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/MHI/MOL_2024.png")
+```
+
+```{r}
+#| echo: false
+#| label: fig-mol-frf
+#| fig-cap: "Molokaʻi Island fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/MHI/Molokai_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Molokaʻi's northwest sector, indicated by pink (@fig-mol-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-mol-nw
+#| fig-cap: "Molokaʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/MOL_NW_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Molokaʻi's pali sector, indicated by blue (@fig-mol-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-mol-pal
+#| fig-cap: "Molokaʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/MOL_PALI_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Molokaʻi's south sector, indicated by green (@fig-mol-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-mol-sou
+#| fig-cap: "Molokaʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/MOL_SOUTH_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Molokaʻi's west sector, indicated by purple (@fig-mol-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-mol-wes
+#| fig-cap: "Molokaʻi Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/MOL_WEST_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Niʻihau {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-nii
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Niihau") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      col.names=colnames(t_haw),
+      align = "rr")
+# kable(haw,
+#       col.names = c('Year', 'Sites'),
+#       align = "rr")
+
+```
+
+Niʻihau is further broken down into geographic sectors due to its large size. Sectors are indicated by different colors on the map and summary data are shown at the island level and the sector level. 
+
+```{r}
+#| echo: false
+#| label: fig-nii-map
+#| fig-cap: "Niʻihau Island site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/MHI/NII_2024.png")
+```
+
+```{r}
+#| echo: false
+#| label: fig-nii-frf
+#| fig-cap: "Niʻihau Island fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/MHI/Niihau_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Niʻihau's east sector, indicated by pink (@fig-nii-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-nii-eas
+#| fig-cap: "Niʻihau Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/NII_EAST_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Niʻihau's Lehua sector, indicated by blue (@fig-mol-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-nii-pal
+#| fig-cap: "Niʻihau Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/NII_LEHUA_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Niʻihau's west sector, indicated by green (@fig-nii-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-nii-wes
+#| fig-cap: "Niʻihau Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/NII_WEST_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Oʻahu {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-oah
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Oahu") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      col.names=colnames(t_haw),
+      align = "rr")
+# kable(haw,
+#       col.names = c('Year', 'Sites'),
+#       align = "rr")
+
+```
+
+Oʻahu is further broken down into geographic sectors due to its large size. Sectors are indicated by different colors on the map and summary data are shown at the island level and the sector level. 
+
+```{r}
+#| echo: false
+#| label: fig-oah-map
+#| fig-cap: "Oʻahu Island site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/MHI/OAH_2024.png")
+```
+
+```{r}
+#| echo: false
+#| label: fig-oah-frf
+#| fig-cap: "Oʻahu Island fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/MHI/Oahu_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Oʻahu's east sector, indicated by pink (@fig-oah-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-oah-east
+#| fig-cap: "Oʻahu Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/OAH_EAST_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Oʻahu's Kaena sector, indicated by blue (@fig-oah-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-oah-kae
+#| fig-cap: "Oʻahu Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/OAH_KAENA_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Oʻahu's northeast sector, indicated by green (@fig-oah-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-oah-ne
+#| fig-cap: "Oʻahu Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/OAH_NE_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Oʻahu's north sector, indicated by purple (@fig-oah-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-oah-nor
+#| fig-cap: "Oʻahu Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/OAH_NORTH_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Oʻahu's south sector, indicated by olive (@fig-oah-map). {.unnumbered}
+
+```{r}
+#| echo: false
+#| label: fig-oah-sou
+#| fig-cap: "Oʻahu Island sector fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/MHI/OAH_SOUTH_SEC_2024.png")
+```
+
+{{< pagebreak >}}
+
+# Papahānaumokuākea Marine National Monument {.unnumbered}
+
+## Hōlanikū (Kure)  {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-kur
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Kure") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, aligning rr
+kable(t_haw,
       align = "rr")
 ```
 
-:::
+```{r}
+#| echo: false
+#| label: fig-kur-map
+#| fig-cap: "Hōlanikū site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/NWHI/KUR_2024.png")
+```
 
-### Equations
-Need to display equations that you've used?  You can do that!  There are a few
-examples below to get you started.  You can also find a handy resource for 
-coding equations here: <https://www.overleaf.com/learn>.  Follow the links under 
-the "Mathematics" heading on the left-hand side.
+Hōlanikū, also known as Kure Atoll, is further broken down into different habitat types or reef zones.  
 
-One thing to note: you'll need to number equations manually in Word after you render
-the Data Report.  Numbering them in the code that creates the equation causes the
-number to be included in Word's Equation Editor, which causes problems for 508
-compliance. 
+{{< pagebreak >}}
 
-Simple, centered equation:  
-$$
-\begin{align}
-s = T(T_{max} - T)(T - T_{min})
-\end{align}
-$$
-More formatting in this example: 
-$$
-\begin{align}
-r = e^{25.22-\frac{E}{kT}}
-\end{align}
-$$
-Partial differential equations:
-$$
-\begin{align}
-\frac{\partial N_{C}}{\partial t} = -\frac{\partial }{\partial m}(GN_{C}) - DN_{C}
-\end{align}
-$$
-Integral with limits: 
-$$
-\begin{align}
-0.5N = \int_{x_{min}}^{x_{med}} (bx + a)\,dx
-\end{align}
-$$
-Fraction, overbars, subsrcipts: 
-$$
-\begin{align}
-b = \frac{N_{sm} - N_{lg}}{\bar{x}_{sm} - \bar{x}_{lg}}
-\end{align}
-$$
+### Forereef habitat {.unnumbered}
 
-## Citations and references
-PIFSC Data Reports use APA 7th edition formatting for references and citations.  
-Here's an example of citing @Nguyen2019 and Nguyen et al. (2019) in text 
-two different ways.  Curious about the difference between those citation styles?  
-Review the file `LiteratureCited.qmd` to see important details about coding your 
-references and citations.  You have options and you have to choose among them.  
-Action is required on your part, if only to delete a line of code.
+table caption: Year surveyed and the number of sites.
 
-The sole purpose of this sentence is to cite @Soto2017, @Pegion2019, and 
-@AnnualReport so that these populate the References section.
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-kur-frf
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Kure"& REEF_ZONE == "Forereef") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# aligning the text in keeping with the PIFSC template
+kable(t_haw,
+      align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-kur-frf
+#| fig-cap: "Hōlanikū forereef fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/NWHI/Kure_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Lagoon habitat {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-kur-lag
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Kure"& REEF_ZONE == "Lagoon") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table
+kable(t_haw,
+      align = "rr")
+```
+```{r}
+#| echo: false
+#| label: fig-kur-lag
+#| fig-cap: "Hōlanikū lagoon fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/NWHI/Kure_LAG_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Backreef habitat {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-kur-bkr
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Kure"& REEF_ZONE == "Backreef") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# aligning the text in keeping with the PIFSC template
+kable(t_haw,
+      align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-kur-bkr
+#| fig-cap: "Hōlanikū backreef fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/NWHI/Kure_BKR_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Kamole (Laysan) {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-lay
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Laysan") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, aligning rr
+kable(t_haw,
+      align = "rr")
+```
+
+```{r}
+#| echo: false
+#| label: fig-lay-map
+#| fig-cap: "Kamole site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/NWHI/LAY_2024.png")
+```
+
+```{r}
+#| echo: false
+#| label: fig-lay
+#| fig-cap: "Kamole fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/NWHI/Laysan_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Kapou (Lisianski) {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-lis
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Lisianski") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, aligning rr
+kable(t_haw,
+      align = "rr")
+```
+
+```{r}
+#| echo: false
+#| label: fig-lis-map
+#| fig-cap: "Kapou site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/NWHI/LIS_2024.png")
+```
+
+```{r}
+#| echo: false
+#| label: fig-lis
+#| fig-cap: "Kapou fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/NWHI/Lisianski_FRF_2024.png")
+```
+
+<!-- # Kuaihelani (Midway) {.unnumbered} -->
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| message: false -->
+<!-- #| warning: false -->
+<!-- #| label: tbl-mid -->
+<!-- #| tbl-cap: Year surveyed and the number of sites -->
+
+<!-- # Load the library we'll need -->
+<!-- library(knitr) -->
+
+<!-- # read in island data - number of surveys per year -->
+<!-- library(dplyr) -->
+<!-- load("data/Data Outputs/working_site_data.rdata") -->
+<!-- # filter for after 2009 -->
+<!-- wsd<-wsd %>% filter(OBS_YEAR>2009) -->
+<!-- # make a table of number of survey sites per year -->
+<!-- site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>%  -->
+<!--   count() -->
+<!-- haw<-as.data.frame(site) %>% filter(ISLAND == "Midway") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) -->
+<!-- t_haw<-as.data.frame(t(haw)) -->
+<!-- # Make the table, aligning rr -->
+<!-- kable(t_haw, -->
+<!--       align = "rr") -->
+<!-- ``` -->
+
+
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| label: fig-mid-map -->
+<!-- #| fig-cap: "Kuaihelani site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site." -->
+<!-- knitr::include_graphics("Figures/NWHI/MID_2024.png") -->
+<!-- ``` -->
+
+<!-- Kuaihelani, also known as Midway Atoll, is further broken down into different habitat types or reef zones.   -->
+
+<!-- Forereef habitat -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| message: false -->
+<!-- #| warning: false -->
+<!-- #| label: tbl-mid-frf -->
+<!-- #| tbl-cap: Year surveyed and the number of sites -->
+
+<!-- # make a table of number of survey sites per year -->
+<!-- site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>%  -->
+<!--   count() -->
+<!-- haw<-as.data.frame(site) %>% filter(ISLAND == "Midway"& REEF_ZONE == "Forereef") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)  -->
+<!-- haw<-haw %>% filter(Sites>1) -->
+<!-- t_haw<-as.data.frame(t(haw)) -->
+<!-- # Make the table, including: -->
+<!-- # aligning the text in keeping with the PIFSC template -->
+<!-- kable(t_haw, -->
+<!--       align = "rr") -->
+
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| label: fig-mid-frf -->
+<!-- #| fig-cap: "Kuaihelani forereef fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)." -->
+<!-- knitr::include_graphics("Figures/NWHI/Midway_FRF_2024.png") -->
+<!-- ``` -->
+
+<!-- Lagoon habitat -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| message: false -->
+<!-- #| warning: false -->
+<!-- #| label: tbl-mid-lag -->
+<!-- #| tbl-cap: Year surveyed and the number of sites -->
+
+<!-- # make a table of number of survey sites per year -->
+<!-- site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>%  -->
+<!--   count() -->
+<!-- haw<-as.data.frame(site) %>% filter(ISLAND == "Midway"& REEF_ZONE == "Lagoon") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)  -->
+<!-- haw<-haw %>% filter(Sites>1) -->
+<!-- t_haw<-as.data.frame(t(haw)) -->
+<!-- # Make the table -->
+<!-- kable(t_haw, -->
+<!--       align = "rr") -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| label: fig-mid-lag -->
+<!-- #| fig-cap: "Kuaihelani lagoon fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)." -->
+<!-- knitr::include_graphics("Figures/NWHI/Midway_LAG_2024.png") -->
+<!-- ``` -->
+
+<!-- Backreef habitat -->
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| message: false -->
+<!-- #| warning: false -->
+<!-- #| label: tbl-mid-bkr -->
+<!-- #| tbl-cap: Year surveyed and the number of sites -->
+
+<!-- # make a table of number of survey sites per year -->
+<!-- site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>%  -->
+<!--   count() -->
+<!-- haw<-as.data.frame(site) %>% filter(ISLAND == "Midway"& REEF_ZONE == "Backreef") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)  -->
+<!-- haw<-haw %>% filter(Sites>1) -->
+<!-- t_haw<-as.data.frame(t(haw)) -->
+<!-- # Make the table, including: -->
+<!-- # aligning the text in keeping with the PIFSC template -->
+<!-- kable(t_haw, -->
+<!--       align = "rr") -->
+
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| label: fig-mid-bkr -->
+<!-- #| fig-cap: "Kuaihelani backreef fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)." -->
+<!-- knitr::include_graphics("Figures/NWHI/Midway_BKR_2024.png") -->
+<!-- ``` -->
+
+{{< pagebreak >}}
+
+## Lalo (French Frigate Shoals) {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-ffs
+
+# Load the library we'll need
+library(knitr)
+
+# read in island data - number of surveys per year
+library(dplyr)
+load("data/Data Outputs/working_site_data.rdata")
+# filter for after 2009
+wsd<-wsd %>% filter(OBS_YEAR>2009)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "French Frigate") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      align = "rr")
+# kable(haw,
+#       col.names = c('Year', 'Sites'),
+#       align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-ffs-map
+#| fig-cap: "Lalo site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/NWHI/FFS_2024.png")
+```
+
+Lalo, also known as French Frigate Shoals, is further broken down into different habitat types or reef zones.  
+
+{{< pagebreak >}}
+
+### Forereef habitat{.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-ffs-frf
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "French Frigate"& REEF_ZONE == "Forereef") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-ffs-frf
+#| fig-cap: "Lalo forereef fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/NWHI/French Frigate_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Lagoon habitat{.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-ffs-lag
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "French Frigate"& REEF_ZONE == "Lagoon") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-ffs-lag
+#| fig-cap: "Lalo lagoon fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/NWHI/French Frigate_LAG_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Protected slope habitat{.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-ffs-ps
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "French Frigate"& REEF_ZONE == "Protected Slope") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# renaming the columns (cols_label)
+# aligning the text in keeping with the PIFSC template
+
+kable(t_haw,
+      align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-ffs-ps
+#| fig-cap: "Lalo protected slope fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/NWHI/French Frigate_PS_2024.png")
+```
+
+{{< pagebreak >}}
+
+## Manawai (Pearl & Hermes) {.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-phr-frf
+
+library(kableExtra)
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Pearl & Hermes") %>% dplyr::select(-c(REGION,ISLAND,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# aligning the text in keeping with the PIFSC template
+kable(t_haw,
+      align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-phr-map
+#| fig-cap: "Manawai site survey data by year. Each bubble represents a survey site and the size of the bubble corresponds to the total fish biomass at each site."
+knitr::include_graphics("Figures/NWHI/PHR_2024.png")
+```
+
+Manawai, also known as Pearl & Hermes, is further broken down into different habitat types or reef zones.
+
+{{< pagebreak >}}
+
+### Forereef habitat{.unnumbered}
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-phr-frf
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Pearl & Hermes"& REEF_ZONE == "Forereef") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# aligning the text in keeping with the PIFSC template
+kable(t_haw,
+      align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-phr-frf
+#| fig-cap: "Manawai forereef fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right). The Hawai`i regional mean estimates of each metric are plotted for reference (horizontal gray line)."
+knitr::include_graphics("Figures/NWHI/Pearl & Hermes_FRF_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Lagoon habitat{.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-phr-lag
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Pearl & Hermes"& REEF_ZONE == "Lagoon") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# aligning the text in keeping with the PIFSC template
+kable(t_haw,
+      align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-phr-lag
+#| fig-cap: "Manawai lagoon fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/NWHI/Pearl & Hermes_LAG_2024.png")
+```
+
+{{< pagebreak >}}
+
+### Backreef habitat{.unnumbered}
+
+table caption: Year surveyed and the number of sites.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: tbl-phr-bkr
+
+# make a table of number of survey sites per year
+site<-wsd %>% group_by(REGION, OBS_YEAR, ISLAND,REEF_ZONE,METHOD) %>% 
+  count()
+haw<-as.data.frame(site) %>% filter(ISLAND == "Pearl & Hermes"& REEF_ZONE == "Backreef") %>% dplyr::select(-c(REGION,ISLAND,REEF_ZONE,METHOD))%>% dplyr::rename(Year = OBS_YEAR, Sites = n) 
+haw<-haw %>% filter(Sites>1)
+t_haw<-as.data.frame(t(haw))
+# Make the table, including:
+# aligning the text in keeping with the PIFSC template
+kable(t_haw,
+      align = "rr")
+
+```
+
+```{r}
+#| echo: false
+#| label: fig-phr-bkr
+#| fig-cap: "Manawai backreef fish plots. Mean values ± standard error are plotted for biomass, mean size, and biomass per size class of all fishes observed (top); and biomass per consumer group (middle), parrotfish size classes (bottom left), and families of interest (bottom right)."
+knitr::include_graphics("Figures/NWHI/Pearl & Hermes_BKR_2024.png")
+```
+
+{{< pagebreak >}}
+
+# Acknowledgements
+
+Thanks to all those onboard the NOAA Ship *Oscar Elton Sette* for their logistical and field support during the `r ReportYear` Pacific NCRMP research cruise and to the following divers for their assistance with data collection: Candace Alagata, Corinne Amir, Isabelle Basden, Raymond Boland,  Jonny Charendoff, Matthew Chauvin, Chelsie Counsell, Daniela Escontrela-Dieguez, Laura Gajdzik, Alexa Gonzales, Aralyn Hacker, Ari Halperin, Lori Luers, Tye Kindinger, Mia Lamirand, Roseanna Lee, Sydney Luitgaarden, Makoa Pascoe, Jake Richard, Andrew Shantz, Jan Willem Staman, Juliette Verstaen, Pearl Thompson, Rebecca Weible, and Heather Ylitalo-Ward. We thank the staff of the NOAA PIFSC ESD ARP for assistance in the field and data management. This work was funded by the NOAA Coral Reef Conservation Program (CRCP Project #322) and the NOAA PIFSC. 
+Report, figures, and maps were compiled by K. McCoy. 
